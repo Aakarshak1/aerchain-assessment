@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { DialogClose, DialogFooter } from '../ui/dialog';
 
 import { transporterOption, addTripFormSchema } from '@/utils/constant';
 
@@ -177,11 +178,16 @@ const AddTripForm = () => {
           )}
         />
 
-        <div className='flex justify-end'>
+        <DialogFooter className='flex justify-end gap-2'>
+          <DialogClose asChild>
+            <Button type='button' variant={'outline'}>
+              Cancel
+            </Button>
+          </DialogClose>
           <Button type='submit' className='w-[120px] bg-blue-500'>
             Add Trip
           </Button>
-        </div>
+        </DialogFooter>
       </form>
     </Form>
   );
