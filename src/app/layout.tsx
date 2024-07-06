@@ -23,13 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body
-        className={cn(
-          'min-h-screen bg-background font-sans antialiased container mx-auto',
-          fontSans.variable
-        )}>
-        <NavBar />
-        {children}
+      <body className={cn('min-h-screen bg-background font-sans antialiased ', fontSans.variable)}>
+        <div className='container mx-auto '>
+          <NavBar />
+          {children}
+        </div>
       </body>
     </html>
   );

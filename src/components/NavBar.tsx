@@ -64,7 +64,7 @@ const NavBar = () => {
           </div>
 
           <div className='flex items-center gap-2'>
-            <DropdownMenu modal={false}>
+            <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant='secondary' size='icon' className='w-[120px] gap-1'>
                   <Image height={50} width={30} src={GmailLogo} alt='gmail logo' />
