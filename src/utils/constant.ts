@@ -19,3 +19,13 @@ export const addTripFormSchema = z.object({
     message: 'Invalid phone number. it should be max 10 number',
   }),
 });
+
+
+export const updateStatusFrom = z.object({
+  transporter: z.enum(transporterOption, {
+    message: 'Transporter is required.',
+  }),
+  time: z.date({
+    message: 'Time is required',
+  }),
+});
