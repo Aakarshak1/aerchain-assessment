@@ -1,9 +1,9 @@
 'use client';
+
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const percentage = 80;
-const CircularProgression = () => {
+const CircularProgression = ({ percentage }: { percentage: number }) => {
   return (
     <CircularProgressbar
       value={percentage}
