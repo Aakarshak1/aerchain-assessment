@@ -27,7 +27,7 @@ export type Trip = {
   transporter: string;
   tripStartTime: string;
   currentStatusCode: string;
-  currenStatus: string;
+  currentStatus: string;
   phoneNumber: number;
   etaDays: number;
   distanceRemaining: number;
@@ -283,7 +283,7 @@ export const columns: ColumnDef<Trip>[] = [
     },
   },
   {
-    accessorKey: 'currenStatus',
+    accessorKey: 'currentStatus',
     header: ({ column }) => {
       return (
         <div className='text-left flex items-center cursor-pointer px-2 text-sm'>
@@ -337,7 +337,7 @@ export const columns: ColumnDef<Trip>[] = [
       );
     },
     cell: ({ row }) => {
-      let rowValue: string = row.getValue('currenStatus');
+      let rowValue: string = row.getValue('currentStatus');
       rowValue = rowValue === 'Reached Destination' ? 'Reached' : rowValue;
 
       return (
