@@ -1,7 +1,7 @@
-import { data } from '@/data/TripData.json';
 import { calculateTATStatus } from './convertDate';
+import { Trip } from '@/components/TableContainer/Columns'; // this need to change
 
-export const calculateCardData = () => {
+export const calculateCardData = (data: Trip[]) => {
   let totalTripsCount = 0;
   let deliveredCount = 0;
   let inTransitCount = 0;
@@ -10,8 +10,8 @@ export const calculateCardData = () => {
 
   data.forEach((trip) => {
     totalTripsCount++;
-    if (trip.currentStatus === 'Delivered') deliveredCount++;
-    else if (trip.currentStatus === 'In Transit') inTransitCount++;
+    if (trip.currenStatus === 'Delivered') deliveredCount++;
+    else if (trip.currenStatus === 'In Transit') inTransitCount++;
 
     const tatStatus = calculateTATStatus(trip);
     if (tatStatus === 'Delayed') delayedTripsCount++;

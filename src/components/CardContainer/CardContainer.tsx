@@ -3,8 +3,9 @@ import { Separator } from '@/components/ui/separator';
 
 import CircularProgression from './CircularProgression';
 import { calculateCardData } from '@/utils/calculateCardData';
+import { Trip } from '@/components/TableContainer/Columns'; // this need to change
 
-const CardContainer = () => {
+const CardContainer = ({ tripData }: { tripData: Trip[] }) => {
   const {
     deliveredCount,
     deliveredPercent,
@@ -14,7 +15,7 @@ const CardContainer = () => {
     delayedTripsCount,
     onTimeTripsCount,
     onTimeTripsPercent,
-  } = calculateCardData();
+  } = calculateCardData(tripData);
 
   return (
     <div className='flex w-full gap-10 justify-between'>
