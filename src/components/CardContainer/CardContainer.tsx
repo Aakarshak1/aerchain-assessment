@@ -2,10 +2,13 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
 import CircularProgression from './CircularProgression';
+
 import { calculateCardData } from '@/utils/calculateCardData';
 import { Trip } from '@/utils/constant';
 
-const CardContainer = ({ tripData }: { tripData: Trip[] }) => {
+type CardContainerProps = { tripData: Trip[] };
+
+const CardContainer = ({ tripData }: CardContainerProps) => {
   const {
     deliveredCount,
     deliveredPercent,

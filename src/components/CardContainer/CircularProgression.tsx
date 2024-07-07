@@ -3,7 +3,11 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const CircularProgression = ({ percentage }: { percentage: number }) => {
+type CircularProgressionProps = {
+  percentage: number;
+};
+
+const CircularProgression = ({ percentage }: CircularProgressionProps) => {
   return (
     <CircularProgressbar
       value={percentage}
