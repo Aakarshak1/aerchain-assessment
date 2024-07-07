@@ -7,18 +7,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-import AddTripForm from './AddTripForm';
 import { ReactNode } from 'react';
 
-const AddTripModal = ({
-  children,
-  open,
-  onOpenChange,
-}: {
+type AddTripModalProps = {
   children: ReactNode;
   open: boolean;
   onOpenChange: (args: boolean) => void;
-}) => {
+};
+const AddTripModal = ({ children, open, onOpenChange }: AddTripModalProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>

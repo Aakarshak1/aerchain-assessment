@@ -56,3 +56,16 @@ export const updateStatusFromSchema = z.object({
     message: 'Time is required',
   }),
 });
+
+export const getCurrentStatusCode = (status: string) => {
+  switch (status) {
+    case 'Booked':
+      return 'BKD';
+    case 'Delivered':
+      return 'DEL';
+    case 'In Transit':
+      return 'INT';
+    case 'Reached Destination':
+      return 'RD';
+  }
+};

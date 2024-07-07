@@ -1,9 +1,7 @@
 'use client';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-
 import {
   ColumnDef,
-  RowSelectionState,
   SortingState,
   VisibilityState,
   flexRender,
@@ -13,6 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+
 import {
   Table,
   TableBody,
@@ -23,6 +22,7 @@ import {
 } from '@/components/ui/table';
 import { CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+
 import { Trip } from '@/utils/constant';
 
 interface DataTableProps<TData, TValue> {
@@ -40,8 +40,8 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({
-    pageIndex: 0, //initial page index
-    pageSize: 10, //default page size
+    pageIndex: 0,
+    pageSize: 10,
   });
 
   const table = useReactTable({

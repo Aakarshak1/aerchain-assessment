@@ -3,10 +3,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import dayjs from 'dayjs';
 
 import { Button } from '@/components/ui/button';
+import { DateTimePicker } from '@/components/ui/datetime-picker';
+import { DialogClose, DialogFooter } from '../ui/dialog';
 import {
   Form,
   FormControl,
@@ -22,18 +23,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { DateTimePicker } from '@/components/ui/datetime-picker';
-import { DialogClose, DialogFooter } from '../ui/dialog';
 
-import { statusOption, updateStatusFromSchema, Trip } from '@/utils/constant';
+import { Trip, statusOption, updateStatusFromSchema, getCurrentStatusCode } from '@/utils/constant';
 
-const UpdateStatusFrom = ({
-  rowData,
-  updateTrip,
-}: {
+type UpdateStatusFormProps = {
   rowData: Trip;
   updateTrip: (args: Trip) => void;
-}) => {
+};
+
+const UpdateStatusFrom = ({ rowData, updateTrip }: UpdateStatusFormProps) => {
   const form = useForm<z.infer<typeof updateStatusFromSchema>>({
     resolver: zodResolver(updateStatusFromSchema),
     defaultValues: {
@@ -41,19 +39,6 @@ const UpdateStatusFrom = ({
       status: rowData?.currenStatus ?? 'Booked',
     },
   });
-
-  const getCurrentStatusCode = (status: string) => {
-    switch (status) {
-      case 'Booked':
-        return 'BKD';
-      case 'Delivered':
-        return 'DEL';
-      case 'In Transit':
-        return 'INT';
-      case 'Reached Destination':
-        return 'RD';
-    }
-  };
 
   function onSubmit(values: z.infer<typeof updateStatusFromSchema>) {
     const updateRowData = {
@@ -69,6 +54,7 @@ const UpdateStatusFrom = ({
 
     updateTrip(updateRowData as Trip);
   }
+
   return (
     <Form {...form}>
       <form
@@ -107,9 +93,6 @@ const UpdateStatusFrom = ({
             </FormItem>
           )}
         />
-
-        {/*  */}
-
         <FormField
           control={form.control}
           name='time'
