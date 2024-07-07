@@ -8,11 +8,24 @@ import {
 } from '@/components/ui/dialog';
 
 import UpdateStatusFrom from './UpdateStatusFrom';
+import { Trip } from './Columns';
+import { ReactNode } from 'react';
 
-const UpdateStatusModal = () => {
+const UpdateStatusModal = ({
+  isEmpty,
+  children,
+  open,
+  onOpenChange,
+}: {
+  isEmpty: boolean;
+  children: ReactNode;
+  open: boolean;
+  onOpenChange: (args: boolean) => void;
+}) => {
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
+        {/* <Button variant={'outline'} disabled={isEmpty}> */}
         <Button variant={'outline'}>Update Status</Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
@@ -20,7 +33,8 @@ const UpdateStatusModal = () => {
           <DialogTitle>Update Status</DialogTitle>
         </DialogHeader>
         <div className='grid gap-4 py-2'>
-          <UpdateStatusFrom />
+          {/* <UpdateStatusFrom rowData={selectedRowData} /> */}
+          {children}
         </div>
       </DialogContent>
     </Dialog>

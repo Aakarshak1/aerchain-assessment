@@ -4,6 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import dayjs from 'dayjs';
+
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -23,16 +25,50 @@ import {
 import { DateTimePicker } from '@/components/ui/datetime-picker';
 import { DialogClose, DialogFooter } from '../ui/dialog';
 
-import { transporterOption, updateStatusFrom } from '@/utils/constant';
+import { statusOption, updateStatusFrom } from '@/utils/constant';
+import { Trip } from './Columns';
 
-const UpdateStatusFrom = () => {
+const UpdateStatusFrom = ({
+  rowData,
+  updateTrip,
+}: {
+  rowData: Trip;
+  updateTrip: (args: Trip) => void;
+}) => {
   const form = useForm<z.infer<typeof updateStatusFrom>>({
     resolver: zodResolver(updateStatusFrom),
+    defaultValues: {
+      // @ts-ignore
+      status: rowData?.currenStatus ?? 'Booked',
+    },
   });
 
+  const getCurrentStatusCode = (status: string) => {
+    switch (status) {
+      case 'Booked':
+        return 'BKD';
+      case 'Delivered':
+        return 'DEL';
+      case 'In Transit':
+        return 'INT';
+      case 'Reached Destination':
+        return 'RD';
+    }
+  };
+
   function onSubmit(values: z.infer<typeof updateStatusFrom>) {
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    const updateRowData = {
+      ...rowData,
+      currenStatus: values.status,
+      currentStatusCode: getCurrentStatusCode(values.status),
+      lastPingTime: dayjs(values.time).toISOString(),
+    };
+
+    if (values.status === 'Delivered') {
+      updateRowData.tripEndTime = dayjs(values.time).toISOString();
+    }
+
+    updateTrip(updateRowData as Trip);
   }
   return (
     <Form {...form}>
@@ -41,13 +77,13 @@ const UpdateStatusFrom = () => {
         className='space-y-6 flex flex-wrap flex-col gap-4'>
         <FormField
           control={form.control}
-          name='transporter'
+          name='status'
           render={({ field }) => (
             <FormItem className='relative space-y-0 w-[300px] mt-2'>
               <FormLabel
                 htmlFor='input-with-label'
                 className='absolute left-3 -top-2 bg-background px-1 text-xs text-gray-500  before:content-["*"] before:text-red-500 before:-ml-1 '>
-                Transporter
+                Status
               </FormLabel>
               <FormControl>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -55,14 +91,14 @@ const UpdateStatusFrom = () => {
                     <SelectTrigger>
                       <SelectValue
                         className='placeholder:text-gray-500'
-                        placeholder='Select Transporter '
+                        placeholder='Select Status '
                       />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {transporterOption.map((transporter, index) => (
-                      <SelectItem key={index} value={transporter}>
-                        {transporter}
+                    {statusOption.map((status, index) => (
+                      <SelectItem key={index} value={status}>
+                        {status}
                       </SelectItem>
                     ))}
                   </SelectContent>

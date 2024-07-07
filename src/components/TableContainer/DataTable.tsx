@@ -1,8 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import {
   ColumnDef,
+  RowSelectionState,
   SortingState,
   VisibilityState,
   flexRender,
@@ -22,13 +23,19 @@ import {
 } from '@/components/ui/table';
 import { CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Trip } from './Columns';
 
 interface DataTableProps<TData, TValue> {
+  setSelectedRow: Dispatch<SetStateAction<Trip | undefined>>;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  setSelectedRow,
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
@@ -55,6 +62,14 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
       rowSelection,
     },
   });
+
+  useEffect(() => {
+    if (table.getSelectedRowModel().rows.length === 1) {
+      setSelectedRow(table.getSelectedRowModel().rows[0].original as Trip);
+    } else {
+      setSelectedRow(undefined);
+    }
+  }, [table, rowSelection, setSelectedRow]);
 
   return (
     <>
