@@ -25,7 +25,7 @@ import {
 import { DateTimePicker } from '@/components/ui/datetime-picker';
 import { DialogClose, DialogFooter } from '../ui/dialog';
 
-import { statusOption, updateStatusFrom, Trip } from '@/utils/constant';
+import { statusOption, updateStatusFromSchema, Trip } from '@/utils/constant';
 
 const UpdateStatusFrom = ({
   rowData,
@@ -34,8 +34,8 @@ const UpdateStatusFrom = ({
   rowData: Trip;
   updateTrip: (args: Trip) => void;
 }) => {
-  const form = useForm<z.infer<typeof updateStatusFrom>>({
-    resolver: zodResolver(updateStatusFrom),
+  const form = useForm<z.infer<typeof updateStatusFromSchema>>({
+    resolver: zodResolver(updateStatusFromSchema),
     defaultValues: {
       // @ts-ignore
       status: rowData?.currenStatus ?? 'Booked',
@@ -55,7 +55,7 @@ const UpdateStatusFrom = ({
     }
   };
 
-  function onSubmit(values: z.infer<typeof updateStatusFrom>) {
+  function onSubmit(values: z.infer<typeof updateStatusFromSchema>) {
     const updateRowData = {
       ...rowData,
       currenStatus: values.status,

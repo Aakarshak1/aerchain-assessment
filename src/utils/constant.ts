@@ -48,7 +48,7 @@ export const addTripFormSchema = z.object({
     }),
 });
 
-export const updateStatusFrom = z.object({
+export const updateStatusFromSchema = z.object({
   status: z.enum(statusOption, {
     message: 'Status is required.',
   }),
