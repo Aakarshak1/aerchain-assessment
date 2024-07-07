@@ -25,19 +25,24 @@ import { DialogClose, DialogFooter } from '../ui/dialog';
 
 import { transporterOption, addTripFormSchema } from '@/utils/constant';
 
-const AddTripForm = () => {
+type addTripValues = z.infer<typeof addTripFormSchema>;
+
+type addTripFromProps = {
+  addTripHandler: (values: addTripValues) => void;
+};
+
+const AddTripForm = ({ addTripHandler }: addTripFromProps) => {
   const form = useForm<z.infer<typeof addTripFormSchema>>({
     resolver: zodResolver(addTripFormSchema),
     defaultValues: {
       tripId: '',
       source: '',
-      destination: '',
+      dest: '',
     },
   });
 
   function onSubmit(values: z.infer<typeof addTripFormSchema>) {
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    addTripHandler(values);
   }
 
   return (
@@ -130,7 +135,7 @@ const AddTripForm = () => {
           />
           <FormField
             control={form.control}
-            name='destination'
+            name='dest'
             render={({ field }) => (
               <FormItem className='relative space-y-0 w-[270px]'>
                 <FormLabel
@@ -155,7 +160,7 @@ const AddTripForm = () => {
 
         <FormField
           control={form.control}
-          name='phone'
+          name='phoneNumber'
           render={({ field }) => (
             <FormItem className='relative space-y-0  w-[270px]'>
               <FormLabel

@@ -8,10 +8,19 @@ import {
 } from '@/components/ui/dialog';
 
 import AddTripForm from './AddTripForm';
+import { ReactNode } from 'react';
 
-const AddTripModal = () => {
+const AddTripModal = ({
+  children,
+  open,
+  onOpenChange,
+}: {
+  children: ReactNode;
+  open: boolean;
+  onOpenChange: (args: boolean) => void;
+}) => {
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button className='bg-blue-500 px-5'> Add Trip</Button>
       </DialogTrigger>
@@ -19,9 +28,7 @@ const AddTripModal = () => {
         <DialogHeader>
           <DialogTitle>Add Trip</DialogTitle>
         </DialogHeader>
-        <div className='grid gap-4 py-2'>
-          <AddTripForm />
-        </div>
+        <div className='grid gap-4 py-2'>{children}</div>
       </DialogContent>
     </Dialog>
   );
