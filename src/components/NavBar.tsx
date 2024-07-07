@@ -26,7 +26,7 @@ const NavBar = () => {
     <div className='flex w-full flex-col'>
       <header className='sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 justify-between '>
         <nav className='gap-4 text-sm font-medium flex flex-row items-center'>
-          <Image src={Logo} width={150} height={50} alt='Aerchain logo' />
+          <Image src={Logo} width={150} height={50} alt='Aerchain logo' priority />
           <Link href='#' className='flex items-center gap-2 font-semibold text-base'>
             <span className='sr-only'>Aerchain</span>
           </Link>

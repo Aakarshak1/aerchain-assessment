@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
 
-export const calculateAndFormatETA = (tripStartTime: string, etaDays: number) => {
+export const calculateAndFormatETA = ({ tripStartTime, etaDays }: Trip) => {
   const etaDate = dayjs(tripStartTime).add(etaDays, 'day');
   return etaDate.format('DD/MM/YYYY hh:mm A');
 };

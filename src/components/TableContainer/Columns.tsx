@@ -260,7 +260,7 @@ export const columns: ColumnDef<Trip>[] = [
       );
     },
     cell: ({ row }) => {
-      const etaDate = calculateAndFormatETA(row.getValue('tripStartTime'), row.getValue('etaDays'));
+      const etaDate = calculateAndFormatETA(row.original);
       return <div>{etaDate}</div>;
     },
   },
