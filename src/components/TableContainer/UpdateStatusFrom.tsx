@@ -27,7 +27,7 @@ import {
 import { Trip, statusOption, updateStatusFromSchema, getCurrentStatusCode } from '@/utils/constant';
 
 type UpdateStatusFormProps = {
-  rowData: Trip;
+  rowData?: Trip;
   updateTrip: (args: Trip) => void;
 };
 
