@@ -27,7 +27,7 @@ export type Trip = {
   transporter: string;
   tripStartTime: string;
   currentStatusCode: string;
-  currentStatus: string;
+  currenStatus: string;
   phoneNumber: number;
   etaDays: number;
   distanceRemaining: number;
@@ -283,7 +283,7 @@ export const columns: ColumnDef<Trip>[] = [
     },
   },
   {
-    accessorKey: 'currentStatus',
+    accessorKey: 'currenStatus',
     header: ({ column }) => {
       return (
         <div className='text-left flex items-center cursor-pointer px-2 text-sm'>
@@ -337,7 +337,7 @@ export const columns: ColumnDef<Trip>[] = [
       );
     },
     cell: ({ row }) => {
-      let rowValue: string = row.getValue('currentStatus');
+      let rowValue: string = row.getValue('currenStatus');
       rowValue = rowValue === 'Reached Destination' ? 'Reached' : rowValue;
 
       return (
@@ -358,7 +358,7 @@ export const columns: ColumnDef<Trip>[] = [
   },
   {
     accessorKey: 'TAT Status',
-    header: ({ table, column }) => {
+    header: ({ column }) => {
       return (
         <div className='text-left flex items-center cursor-pointer px-2 text-sm focus-visible:ring-transparent'>
           TAT Status
