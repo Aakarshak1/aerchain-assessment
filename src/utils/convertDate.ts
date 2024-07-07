@@ -1,4 +1,4 @@
-import { Trip } from '@/components/TableContainer/Columns';
+import { Trip } from '@/utils/constant';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);

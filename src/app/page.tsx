@@ -12,18 +12,15 @@ import UpdateStatusModal from '@/components/TableContainer/UpdateStatusModal';
 import AddTripForm from '@/components/TableContainer/AddTripForm';
 import UpdateStatusFrom from '@/components/TableContainer/UpdateStatusFrom';
 
-import { Trip } from '@/components/TableContainer/Columns';
-
-import { data } from '@/data/TripData.json';
-import { addTripFormSchema, updateStatusFrom } from '@/utils/constant';
+import TripData from '@/data/TripData.json';
+import { addTripFormSchema, Trip } from '@/utils/constant';
 
 type TripValues = z.infer<typeof addTripFormSchema>;
-type UpdateData = z.infer<typeof updateStatusFrom>;
 
 const nanoid = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 10);
 
 export default function Home() {
-  const [tripData, setTripData] = useState<Trip[]>(data);
+  const [tripData, setTripData] = useState<Trip[]>(TripData.data);
   const [addTripModalOpen, setAddTripModal] = useState<boolean>(false);
   const [updateStatusModalOpen, setUpdateStatusModal] = useState<boolean>(false);
   const [selectedRowData, setSelectedRowData] = useState<Trip>();

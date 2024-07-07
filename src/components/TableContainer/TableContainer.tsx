@@ -9,10 +9,10 @@ import AddTripModal from './AddTripModal';
 import UpdateStatusModal from './UpdateStatusModal';
 import { DataTable } from './DataTable';
 
-import { columns, Trip } from './Columns';
+import { columns } from './Columns';
 import { data } from '@/data/TripData.json';
 
-import { addTripFormSchema } from '@/utils/constant';
+import { addTripFormSchema, Trip } from '@/utils/constant';
 import AddTripForm from './AddTripForm';
 
 const TableContainer = ({

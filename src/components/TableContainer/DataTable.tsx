@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/table';
 import { CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Trip } from './Columns';
+import { Trip } from '@/utils/constant';
 
 interface DataTableProps<TData, TValue> {
   setSelectedRow: Dispatch<SetStateAction<Trip | undefined>>;

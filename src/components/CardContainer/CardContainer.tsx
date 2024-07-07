@@ -3,7 +3,7 @@ import { Separator } from '@/components/ui/separator';
 
 import CircularProgression from './CircularProgression';
 import { calculateCardData } from '@/utils/calculateCardData';
-import { Trip } from '@/components/TableContainer/Columns'; // this need to change
+import { Trip } from '@/utils/constant';
 
 const CardContainer = ({ tripData }: { tripData: Trip[] }) => {
   const {

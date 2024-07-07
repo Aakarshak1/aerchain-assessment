@@ -25,8 +25,7 @@ import {
 import { DateTimePicker } from '@/components/ui/datetime-picker';
 import { DialogClose, DialogFooter } from '../ui/dialog';
 
-import { statusOption, updateStatusFrom } from '@/utils/constant';
-import { Trip } from './Columns';
+import { statusOption, updateStatusFrom, Trip } from '@/utils/constant';
 
 const UpdateStatusFrom = ({
   rowData,

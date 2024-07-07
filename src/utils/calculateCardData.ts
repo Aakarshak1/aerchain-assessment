@@ -1,5 +1,5 @@
-import { calculateTATStatus } from './convertDate';
-import { Trip } from '@/components/TableContainer/Columns'; // this need to change
+import { calculateTATStatus } from '@/utils/convertDate';
+import { Trip } from '@/utils/constant';
 
 export const calculateCardData = (data: Trip[]) => {
   let totalTripsCount = 0;

@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dialog';
 
 import UpdateStatusFrom from './UpdateStatusFrom';
-import { Trip } from './Columns';
+import { Trip } from '@/utils/constant';
 import { ReactNode } from 'react';
 
 const UpdateStatusModal = ({
