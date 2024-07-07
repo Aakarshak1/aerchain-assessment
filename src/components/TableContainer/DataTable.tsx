@@ -61,6 +61,14 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
     },
+    initialState: {
+      columnFilters: [
+        {
+          id: 'currenStatus',
+          value: 'Delivered',
+        },
+      ],
+    },
   });
 
   useEffect(() => {
