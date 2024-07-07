@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const transporterOption = ['Blue dart', 'DHL', 'DTDC', 'FedEx', 'Delhivery'] as const;
+export const transporterOption = ['Bluedart', 'DHL', 'DTDC', 'FedEx', 'Delhivery'] as const;
 
 export const addTripFormSchema = z.object({
   tripId: z.string().min(1, {
